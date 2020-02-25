@@ -16,7 +16,7 @@ public class PersonService {
     private final PersonCrete personCrete;
 
     @Autowired
-    public PersonService(@Qualifier("DB") PersonCrete personCrete) {
+    public PersonService(@Qualifier("postgres") PersonCrete personCrete) {
         this.personCrete = personCrete;
     }
 

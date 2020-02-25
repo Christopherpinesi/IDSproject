@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("")
+@Repository("postgres")
 public class PersonCreteAccess implements PersonCrete {
+
     @Override
     public int insertPerson(UUID id, Person person) {
         return 0;
@@ -16,7 +17,7 @@ public class PersonCreteAccess implements PersonCrete {
 
     @Override
     public List<Person> selectAllPeople() {
-        return List.of(new Person(UUID.randomUUID(), name: "From DB"));
+        return List.of(new Person(UUID.randomUUID(),"From POSTGRES DB"));
     }
 
     @Override
