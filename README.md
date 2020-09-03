@@ -1,5 +1,6 @@
 # IDSproject
-progetto universitario di Ingegneria del Software dell' Universita' degli studi di Camerino.
+
+Progetto universitario di Ingegneria del Software dell' Universita' degli studi di Camerino.
 
 Il progetto da realizzare e' il seguente:
 
