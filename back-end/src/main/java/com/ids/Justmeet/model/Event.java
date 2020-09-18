@@ -3,9 +3,9 @@ package com.ids.Justmeet.model;
 import javax.persistence.*;
 
 @Entity
-@Table( name = "tutorials")
+@Table( name = "events")
 
-public class Tutorial {
+public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,16 +17,20 @@ public class Tutorial {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "category")
+	private String category;
+
 	@Column(name = "published")
 	private boolean published;
 
-	public Tutorial() {
+	public Event() {
 
 	}
 
-	public Tutorial(String title, String description, boolean published) {
+	public Event(String title, String description, String category, boolean published) {
 		this.title = title;
 		this.description = description;
+		this.category = category;
 		this.published = published;
 	}
 
@@ -50,6 +54,15 @@ public class Tutorial {
 		this.description = description;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+
 	public boolean isPublished() {
 		return published;
 	}
@@ -60,6 +73,6 @@ public class Tutorial {
 
 	@Override
 	public String toString() {
-		return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+		return "Event [id=" + id + ", title=" + title + ", desc=" + description + ", category=" + category + ", published=" + published + "]";
 	}
 }
