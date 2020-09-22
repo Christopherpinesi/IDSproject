@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ids.Justmeet.model.Event;
 import com.ids.Justmeet.repository.EventRepository;
 
-// @CrossOrigin(origins = "*", maxAge = 3600)
-@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin(origins = "*", maxAge = 3600)
+// @CrossOrigin(origins = "http://localhost:8100")
 @RestController
 @RequestMapping("/api")
+
 
 public class EventController {
     @Autowired
@@ -33,31 +34,14 @@ public class EventController {
     @GetMapping("/event")
     public ResponseEntity<List<Event>> getAllevents(@RequestParam(required = false) String title) {
       try {
-        List<Event> events = new ArrayList<Event>();
-  
-        if (title == null)
-          eventRepository.findAll().forEach(events::add);
-        else
-          eventRepository.findByTitleContaining(title).forEach(events::add);
+        List<Event> events = eventRepository.findByPublished(false);
   
         if (events.isEmpty()) {
           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-  
         return new ResponseEntity<>(events, HttpStatus.OK);
       } catch (Exception e) {
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-      }
-    }
-  
-    @GetMapping("/event/{id}")
-    public ResponseEntity<Event> geteventById(@PathVariable("id") long id) {
-      Optional<Event> eventData = eventRepository.findById(id);
-  
-      if (eventData.isPresent()) {
-        return new ResponseEntity<>(eventData.get(), HttpStatus.OK);
-      } else {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
       }
     }
   
@@ -65,7 +49,7 @@ public class EventController {
     public ResponseEntity<Event> createevent(@RequestBody Event event) {
       try {
         Event _event = eventRepository
-            .save(new Event(event.getTitle(), event.getDescription(), event.getCategory(), false));
+            .save(new Event(event.getTitle(), event.getDescription(), event.getCategory(), event.getLocation(), event.getDate(), event.getUser(), false));
         return new ResponseEntity<>(_event, HttpStatus.CREATED);
       } catch (Exception e) {
         return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -78,9 +62,11 @@ public class EventController {
   
       if (eventData.isPresent()) {
         Event _event = eventData.get();
-        _event.setTitle(event.getTitle());
-        _event.setDescription(event.getDescription());
-        _event.setCategory(event.getCategory());
+        // _event.setTitle(event.getTitle());
+        // _event.setDescription(event.getDescription());
+        // _event.setCategory(event.getCategory());
+        // _event.setLocation(event.getLocation());
+        // _event.setdateEvent(event.getDateEvent());
         _event.setPublished(event.isPublished());
         return new ResponseEntity<>(eventRepository.save(_event), HttpStatus.OK);
       } else {

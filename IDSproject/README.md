@@ -1,2 +1,0 @@
-# IDSproject
-progetto universitario

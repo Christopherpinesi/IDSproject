@@ -1,8 +1,0 @@
-{
-  "name": "Justmeet",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
-}
