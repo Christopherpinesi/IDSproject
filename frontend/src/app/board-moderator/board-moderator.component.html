@@ -1,0 +1,13 @@
+<h2>Eventi da approvare:</h2>
+<div class="container" *ngFor="let post of content">
+    <header class="jumbotron">
+      <p>{{post.title}}</p>
+      <p>{{post.description}}</p>
+      <p>{{post.category}}</p>
+      <p>{{post.dateEvent}}</p>
+      <p>{{post.location}}</p>
+      <p>{{post.date}}</p>
+      <button (click)="putButton([post.id])">Approva</button>
+      <button (click)="delButton([post.id])">Rimuovi</button>
+    </header>
+</div>

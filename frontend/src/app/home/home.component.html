@@ -1,0 +1,18 @@
+<div class="container" *ngFor="let post of content">
+  <header class="jumbotron">
+    <p>{{post.title}}</p>
+    <p>{{post.user}}</p>
+    <p>{{post.description}}</p>
+    <p>{{post.category}}</p>
+    <p>{{post.location}}</p>
+    <p>{{post.date}}</p>
+  </header>
+</div>
+<div class= "container">
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <app-post-tile [posts]="posts"></app-post-tile>
+    </div>
+  </div>
+</div>
